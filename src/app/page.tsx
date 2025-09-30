@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
+import { Suspense } from 'react';
 import CountdownTimer from "./components/CountdownTimer";
 import ScrollTimeline from "./components/VerticalTimeline";
 import Image from "next/image";
@@ -15,8 +16,13 @@ import GuestList from "./components/GuestList";
 import FloatingMusicButton from "./components/FloatingMusicButton";
 import { useGuest } from "../hooks/useGuest";
 
-export default function Home() {
-  const { invitation, ...guestProps } = useGuest();
+interface Props {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export default function Home({ searchParams }: Props) {
+  const params = use(searchParams);
+  const { invitation, ...guestProps } = useGuest(params.invitationId  as string || undefined);
   const [showSplash, setShowSplash] = useState(true);
   const targetDate = new Date("2025-11-15");
 
@@ -25,7 +31,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <Suspense fallback={null}>
       {showSplash || (invitation?.guest.length ?? 0) === 0 ? (
         <div className="container relative">
           <div
@@ -48,7 +54,7 @@ export default function Home() {
         <main>
           <div className="container border-x-[#B4A180] border-x-[1px]">
             <Foreword />
-            <Inspiration showIcon text="A veces lo que empieza como una locura se convierte en lo mejor de tu vida" />
+            <Inspiration/>
             <Families />
             <CountdownTimer
               targetDate={targetDate}
@@ -60,7 +66,6 @@ export default function Home() {
             <WeddingDetails />
             <Inspiration
               text="Etiqueta las fotos de nuestra boda con este hashtag"
-              showIcon={false}
               fallbackText="#katherineyjuan"
             />
             <Acknowledgments />
@@ -69,6 +74,6 @@ export default function Home() {
           </div>
         </main>
       )}
-    </>
+    </Suspense>
   );
 }

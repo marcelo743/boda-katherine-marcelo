@@ -1,13 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { getInvitation } from "../services/invitation.services";
 import { HttpStatusCode } from "axios";
 import { InvitationDTO } from "@/types/invitation.dto";
 
-export function useGuest() {
-    const invitationId = useSearchParams().get("invitationId");
+export function useGuest(invitationId?: string) {
 
     const [confirmedIds, setConfirmedIds] = useState<string[]>([]);
     const [submitted, setSubmitted] = useState(false);
