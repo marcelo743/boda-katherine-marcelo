@@ -1,17 +1,18 @@
 import { Swiper } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
+import { EffectFade, Navigation } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/effect-fade';
+import 'swiper/css/navigation';
 
 export default function Carousel({ children }: { children: React.ReactNode }) {
     return (
         <Swiper
-            modules={[Autoplay, EffectFade]}
+            modules={[EffectFade, Navigation]}
             spaceBetween={0}
             slidesPerView={1}
             loop={true}
             effect="fade"
-            autoplay={{ delay: 3000 }}
+            navigation
         >
             {children}
         </Swiper>

@@ -9,7 +9,7 @@ export default function Families() {
           Con la bendición de Dios y en compañía de nuestros padres
         </p>
         <p className="font-high-spirited text-[40px] md:text-[45px] text-[#191919] leading-[72px] md:leading-[45px] text-center mb-[20px]">
-          Padres de la novia
+          Madre de la novia
         </p>
         <ul className="text-center mb-[32px]">
           <li className="text-[17px] md:text-[19px] text-[#191919] text-center mb-[10px] md:mb-[15px]">
@@ -21,7 +21,7 @@ export default function Families() {
         </p>
         <ul className="text-center mb-[42px]">
           <li className="text-[17px] md:text-[19px] text-[#191919] text-center mb-[10px] md:mb-[20px]">
-            Sr. Juaquin Saalazar
+            Sr. Joaquin Saavedra
           </li>
           <li className="text-[17px] md:text-[19px] text-[#191919] text-center mb-[10px] md:mb-[20px]">
             Sra. Marcela Saavedra

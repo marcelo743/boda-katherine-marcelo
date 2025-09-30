@@ -7,7 +7,7 @@ export default function WeddingDetailsGifts() {
         <section className="pb-[90px] md:pb-[110px]">
             <div data-aos="fade-up" data-duration="1000">
                 <h2 className="text-[60px] text-[#2D2D2D] font-high-spirited leading-[60px] mb-[30px] mx-auto w-full max-w-[450px]">Regalos</h2>
-                <p className="text-[17px] text-[#2D2D2D] tracking-[1px] md:tracking-[1.5px] leading-[25.5px] mb-[50px] w-full max-w-[290px] md:max-w-[350px] mx-auto">El regalo es opcional, la asistencia obligatoria pero si quieres tener un detalle con nosotros te damos algunas ideas.</p>
+                <p className="text-[17px] text-[#2D2D2D] tracking-[1px] md:tracking-[1.5px] leading-[25.5px] mb-[50px] w-full max-w-[290px] md:max-w-[350px] mx-auto">Agradecemos sobre todo tu compañía. Los obsequios son opcionales; si aun así deseas un detalle, te dejamos algunas ideas.</p>
             </div>
             <div data-aos="fade-up" data-duration="1500" className="mb-[50px]">
                 <i className="text-[#2D2D2D] fa-regular fa-envelope text-[50px] md:text-[60px] mb-[25px] md:mb-0" />

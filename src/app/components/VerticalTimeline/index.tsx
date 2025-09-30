@@ -3,10 +3,10 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 const timelineData = [
-  { hour: "18:00 HRS", text: "Ceremonia Religiosa", image: "/church.png" },
-  { hour: "19:30 HRS", text: "Brindis", image: "/cups.png" },
-  { hour: "21:00 HRS", text: "Celebración", image: "/dishes.png" },
-  { hour: "22:00 HRS", text: "A bailar", image: "/dance.png" },
+  { hour: "05:30 PM", text: "Ceremonia Religiosa", image: "/church.png" },
+  { hour: "07:30 PM", text: "Brindis", image: "/cups.png" },
+  { hour: "09:00 PM", text: "Celebración", image: "/dishes.png" },
+  { hour: "10:00 PM", text: "A bailar", image: "/dance.png" },
 ];
 
 export default function ScrollTimeline() {

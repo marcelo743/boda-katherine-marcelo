@@ -24,7 +24,7 @@ export default function Home({ searchParams }: Props) {
   const params = use(searchParams);
   const { invitation, ...guestProps } = useGuest(params.invitationId  as string || undefined);
   const [showSplash, setShowSplash] = useState(true);
-  const targetDate = new Date("2025-11-15");
+  const targetDate = new Date("2025-11-15T17:30:00");
 
   const handleSplashClick = () => {
     setShowSplash(false);

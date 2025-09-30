@@ -8,12 +8,6 @@ export default function Foreword() {
                 <span data-aos="fade-left" data-aos-duration="1500" className="block">Marcelo</span>
             </h2>
             <p className="text-[22px] text-[#191919] tracking-[3px] uppercase mb-[30px] md:mb-[40px]">15 de Noviembre</p>
-            <div data-aos="fade" data-aos-duration="1500" className="flex flex-col pb-[44px]">
-                <div className="w-[30px] h-[30px] bg-[#00000021] text-[white] rounded-full flex items-center justify-center mb-[10px] mx-auto">
-                    <i className="fa-solid fa-angles-down text-[15px]" />
-                </div>
-                <span className="text-[14px] text-[#191919] tracking-[1px] uppercase leading-[21px]">Desliza</span>
-            </div>
         </section>
     )
 };

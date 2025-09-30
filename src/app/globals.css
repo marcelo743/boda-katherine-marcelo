@@ -155,3 +155,9 @@ body {
     z-index: -1;
   }
 }
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  --swiper-navigation-size: 20px; /* Cambia el tamaño aquí */
+  color: white;
+}

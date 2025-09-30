@@ -9,7 +9,7 @@ export default function WeddingInfo() {
                 imageAlt="Iglesia"
                 title="Ceremonia Religiosa"
                 description="Parroquia San Juan Bosco"
-                time="18:00 hrs"
+                time="05:30 PM"
                 address="Avenida Francisco Franco, frente a Colegio Padre Misieri. Granada, Nicaragua."
                 mapLink="https://maps.app.goo.gl/coj38DTdaqF2WhZ47"
             />
@@ -18,7 +18,7 @@ export default function WeddingInfo() {
                 imageAlt="Recepción"
                 title="Recepción"
                 description="Hotel Los Patios"
-                time="20:00 hrs"
+                time="07:30 PM"
                 address="Calle Corrales 525, en Granada, Nicaragua."
                 mapLink="https://maps.app.goo.gl/SYhy3VhVNZyRxivv6"
             />
