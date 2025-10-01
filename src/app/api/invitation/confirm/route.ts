@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/utils/supabase';
 import { HttpStatusCode } from 'axios';
 import { PostgrestError } from '@supabase/supabase-js';
+import { sameStringSet } from '@/utils/helper';
 
 export async function POST(req: Request) {
   try {
@@ -26,14 +27,13 @@ export async function POST(req: Request) {
     .filter(guest => guest.confirmed)
     .map(guest => guest.id);
 
-  
     const idsToConfirm = guestIds.filter(id => !alreadyConfirmedIds.includes(id));
     
     const falselyConfirmedIds = guests
     .filter(guest => guest.confirmed && !guestIds.includes(guest.id))
     .map(guest => guest.id);
 
-    if (guests.length === idsToConfirm.length) {
+    if (sameStringSet(alreadyConfirmedIds, guestIds)) {
       return NextResponse.json({ error: 'Todos los invitados ya están confirmados', status: HttpStatusCode.Ok });
     }
     
