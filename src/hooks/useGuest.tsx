@@ -33,7 +33,6 @@ export function useGuest(invitationId?: string) {
            const confirmGuestIds = response.data?.guest.filter(x => x.confirmed).map(x => x.id) ?? []
            setInvitation(response.data)
            setConfirmedIds(confirmGuestIds);
-           console.log(confirmGuestIds.length);
            setAlreadyConfirmedGuestIds(confirmGuestIds);
         });
     }, [invitationId])

@@ -56,7 +56,6 @@ export async function POST(req: Request) {
     }
 
     if (updatedError) {
-      console.log({updatedError});
       return NextResponse.json({ error: updatedError.message, status: HttpStatusCode.BadGateway });
     }
 

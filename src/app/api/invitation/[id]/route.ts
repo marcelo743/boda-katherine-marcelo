@@ -20,8 +20,6 @@ export async function GET(
     .order("first_name", { referencedTable: "guest", ascending: true })
     .single();
 
-    console.log({error})
-
   if (error) {
     return NextResponse.json({error: error.message, status: HttpStatusCode.InternalServerError, data: null })
   };
