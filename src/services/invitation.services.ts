@@ -14,3 +14,14 @@ export async function getInvitation(invitationId: string): Promise<Response<Invi
 
   return data;
 }
+
+export async function sendConfirmedGuests(guestIds: string[], invitationId: string) {
+  if(invitationId == "") return;
+
+  const { data } = await api.post<Response<{ error: string; status: string }>>(
+    `/invitation/confirm`,
+    { guestIds, invitationId }
+  );
+
+  return data;
+}

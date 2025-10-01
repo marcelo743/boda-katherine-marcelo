@@ -13,12 +13,14 @@ export async function GET(
   const { data, error } = await supabase
     .from("invitation")
     .select(`
-        *,
-        guest (*)
+      *,
+      guest (*)
     `)
     .eq("id", invitationId)
-    .order("created_at", { ascending: false })
+    .order("first_name", { referencedTable: "guest", ascending: true })
     .single();
+
+    console.log({error})
 
   if (error) {
     return NextResponse.json({error: error.message, status: HttpStatusCode.InternalServerError, data: null })

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { getInvitation } from "../services/invitation.services";
+import { getInvitation, sendConfirmedGuests } from "../services/invitation.services";
 import { HttpStatusCode } from "axios";
 import { InvitationDTO } from "@/types/invitation.dto";
 
@@ -11,11 +11,16 @@ export function useGuest(invitationId?: string) {
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
     const [invitation, setInvitation] = useState<InvitationDTO | null>(null);
+    const [alreadyConfirmedGuestIds, setAlreadyConfirmedGuestIds] = useState<string[]>([]);
 
     const handleCheckboxChange = (id: string) => {
         setConfirmedIds((prev) =>
             prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
         );
+
+        if(submitted) {
+            setSubmitted(prev => !prev);
+        }
     };
 
     useEffect(() => {
@@ -25,8 +30,11 @@ export function useGuest(invitationId?: string) {
         .then((response) => {
            if(response.error != null && response.status != HttpStatusCode.Ok) return;
 
-           console.log("response.data", response.data);
+           const confirmGuestIds = response.data?.guest.filter(x => x.confirmed).map(x => x.id) ?? []
            setInvitation(response.data)
+           setConfirmedIds(confirmGuestIds);
+           console.log(confirmGuestIds.length);
+           setAlreadyConfirmedGuestIds(confirmGuestIds);
         });
     }, [invitationId])
 
@@ -35,18 +43,14 @@ export function useGuest(invitationId?: string) {
         setSubmitted(false);
 
         try {
-        const result = await sendConfirmedGuests(confirmedIds);
-        console.log("Respuesta del servidor:", result);
-        setSubmitted(true);
+            await sendConfirmedGuests(confirmedIds, invitationId ?? "");
+            setSubmitted(true);
+            setAlreadyConfirmedGuestIds(confirmedIds);
         } catch (error) {
-        console.error("Error al enviar datos:", error);
+            console.error("Error al enviar datos:", error);
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
-    };
-
-    const sendConfirmedGuests = async (confirmedIds: string[]) => {
-        console.log('confirmedIds', confirmedIds)
     };
 
     return {
@@ -55,6 +59,7 @@ export function useGuest(invitationId?: string) {
         invitation,
         loading,
         handleCheckboxChange,
-        handleSubmit
+        handleSubmit,
+        alreadyConfirmedGuestIds
     }
 }

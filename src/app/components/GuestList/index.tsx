@@ -1,6 +1,7 @@
 "use client";
 
 import { GuestDTO } from "@/types/guest.dto";
+import { sameStringSet } from "@/utils/helper";
 import React from "react";
 
 interface GuestListProps {
@@ -11,6 +12,7 @@ interface GuestListProps {
   familyName: string;
   handleCheckboxChange: (id: string) => void;
   handleSubmit: () => void;
+  alreadyConfirmedGuestIds: string[];
 }
 
 export default function GuestList(props: GuestListProps) {
@@ -21,7 +23,8 @@ export default function GuestList(props: GuestListProps) {
     guests,
     familyName,
     handleCheckboxChange,
-    handleSubmit
+    handleSubmit,
+    alreadyConfirmedGuestIds
   } = props;
 
   return (
@@ -42,17 +45,17 @@ export default function GuestList(props: GuestListProps) {
                 type="checkbox"
                 checked={confirmedIds.includes(guest.id)}
                 onChange={() => handleCheckboxChange(guest.id)}
-                disabled={submitted}
+                id={guest.id}
               />
-              <span className="text-[18px] md:text-[19px] text-black leading-[23.4px] md:leading-[28.5px]">{guest.first_name + " " + guest.last_name}</span>
+              <label className="text-[18px] md:text-[19px] text-black leading-[23.4px] md:leading-[28.5px]" htmlFor={guest.id}>{guest.first_name + " " + guest.last_name}</label>
             </li>
           ))}
         </ul>
         {!submitted && (
           <button
             onClick={handleSubmit}
-            disabled={loading}
-            className={`cursor-pointer w-full text-white transition uppercase max-w-[186px] md:max-w-[192px] py-[10px] px-[20px] text-[17px] md:text-[18px] bg-[#BBD3B1] tracking-[5px] font-light mx-auto block`}
+            disabled={loading || sameStringSet(confirmedIds, alreadyConfirmedGuestIds)}
+            className={`cursor-pointer w-full text-white transition uppercase max-w-[186px] md:max-w-[192px] py-[10px] px-[20px] text-[17px] md:text-[18px]  ${sameStringSet(confirmedIds, alreadyConfirmedGuestIds) ? "bg-[#BBD3B1]" : "bg-[#8A9A5B]"} tracking-[5px] font-light mx-auto block`}
           >
             {loading ? "Enviando..." : "Confirmar"}
           </button>

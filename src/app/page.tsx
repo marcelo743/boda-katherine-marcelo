@@ -22,7 +22,7 @@ interface Props {
 
 export default function Home({ searchParams }: Props) {
   const params = use(searchParams);
-  const { invitation, ...guestProps } = useGuest(params.invitationId  as string || undefined);
+  const { invitation, alreadyConfirmedGuestIds, ...guestProps } = useGuest(params.invitationId  as string || undefined);
   const [showSplash, setShowSplash] = useState(true);
   const targetDate = new Date("2025-11-15T17:30:00");
 
@@ -62,7 +62,7 @@ export default function Home({ searchParams }: Props) {
             />
             <WeddingInfo />
             <ScrollTimeline />
-            <GuestList guests={invitation?.guest ?? []} familyName={invitation?.title ?? ""} {...guestProps}/>
+            <GuestList guests={invitation?.guest ?? []} familyName={invitation?.title ?? ""} alreadyConfirmedGuestIds={alreadyConfirmedGuestIds} {...guestProps}/>
             <WeddingDetails />
             <Inspiration
               text="Etiqueta las fotos de nuestra boda con este hashtag"

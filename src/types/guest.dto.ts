@@ -5,4 +5,5 @@ export interface GuestDTO extends ControlField {
   invitation_id: UUID;
   first_name: string;
   last_name: string;
+  confirmed: boolean;
 };
