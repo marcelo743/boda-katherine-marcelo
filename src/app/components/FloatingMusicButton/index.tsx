@@ -4,14 +4,14 @@ import { useWindowFocus } from "@/hooks/useWindowFocus";
 import { useRef, useState, useEffect } from "react";
 
 export default function FloatingMusicButton() {
-  let { hasFocus, isVisible, isActive } = useWindowFocus();
+  const { hasFocus, isVisible, isActive } = useWindowFocus();
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     if(!isPlaying) return;
-    
+
     if(hasFocus || isVisible || isActive) {
       playSong(false);
     } else {
