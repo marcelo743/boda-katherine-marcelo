@@ -1,10 +1,38 @@
 "use client";
 
+import { useWindowFocus } from "@/hooks/useWindowFocus";
 import { useRef, useState, useEffect } from "react";
 
 export default function FloatingMusicButton() {
+  let { hasFocus, isVisible, isActive } = useWindowFocus();
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    if(!isPlaying) return;
+    
+    if(hasFocus || isVisible || isActive) {
+      playSong(false);
+    } else {
+      playSong(true);
+    }
+  }, [hasFocus, isVisible, isActive])
+
+  const playSong = (play: boolean) => {
+    if (!audioRef.current) return;
+
+    if (play) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(() => {
+          // No mostrar error para evitar spam en consola
+        });
+    }
+  };
 
   const togglePlay = () => {
     if (!audioRef.current) return;
