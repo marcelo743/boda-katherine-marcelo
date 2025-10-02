@@ -14,7 +14,7 @@ export default function WeddingInfo() {
                 mapLink="https://maps.app.goo.gl/coj38DTdaqF2WhZ47"
             />
             <WeddingInfoItem
-                imageSrc="/wedding-info1.png"
+                imageSrc="/hotel.png"
                 imageAlt="Recepción"
                 title="Recepción"
                 description="Hotel Los Patios"
