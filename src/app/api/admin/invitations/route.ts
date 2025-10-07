@@ -5,8 +5,7 @@ import { HttpStatusCode } from 'axios';
 export async function GET() {
     const { data, error } = await supabase
     .from('invitation')
-    .select('*')
-    .limit(15);
+    .select('*');
 
     if (error) {
         return NextResponse.json({

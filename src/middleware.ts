@@ -14,10 +14,8 @@ export async function middleware(req: NextRequest) {
   const path = url.pathname
 
   const res = NextResponse.next()
-  const supabase = createMiddlewareClient({ req, res })
-  const { data: { session } } = await supabase.auth.getSession()
-
-  console.log("admin middleware", session);
+  const supabase = createMiddlewareClient({ req, res });
+  const { data: { session } } = await supabase.auth.getSession();
 
   const isPublic = PUBLIC.includes(path)
   const isProtected = PROTECTED_PREFIXES.some(p => path.startsWith(p))
@@ -41,14 +39,13 @@ export async function middleware(req: NextRequest) {
   }
 
   if ((isAdminPage || isAdminApi) && session) {
-    const role = session.user.user_metadata?.role
-    console.log("role", role);
-    if (role !== 'admin') {
-      if (isAdminApi) {
-        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-      }
-      return NextResponse.redirect(new URL('/unauthorized', req.url))
-    }
+    const role = session.user.user_metadata?.role;
+    // if (role !== 'admin') {
+    //   if (isAdminApi) {
+    //     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    //   }
+    //   return NextResponse.redirect(new URL('/unauthorized', req.url))
+    // }
   }
 
   if (isPublic) return res
