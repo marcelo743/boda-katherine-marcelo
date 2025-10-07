@@ -17,6 +17,8 @@ export default function FloatingMusicButton() {
     } else {
       playSong(true);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasFocus, isVisible, isActive])
 
   const playSong = (play: boolean) => {

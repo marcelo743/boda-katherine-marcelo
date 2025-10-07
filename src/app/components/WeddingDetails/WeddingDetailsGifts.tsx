@@ -14,7 +14,7 @@ export default function WeddingDetailsGifts() {
                 <h2 className="text-[35px] md:text-[60px] text-[#2D2D2D] font-high-spirited leading-[52.5px] md:leading-[60px] mb-[40px] mx-auto w-full max-w-[450px]">Caja de sobres</h2>
             </div>
             <div data-aos="fade-up" data-duration="2000">
-                <Image className="object-cover mx-auto mb-[20px] md:mb-[10px] w-full max-w-[114px] md:max-w-[140px] h-[34px] md:h-[107px]" src="/lista-deseos.png" width={140} height={107} alt="Ícono de Amazon" />
+                <Image className="object-cover mx-auto mb-[20px] md:mb-[10px] w-full max-w-[114px] md:max-w-[140px] h-[107px] md:h-[107px]" src="/lista-deseos.png" width={140} height={107} alt="Ícono de Amazon" />
                 <Link target="_blank" className="uppercase underline font-semibold text-[18px] md:text-[19px] text-[#2D2D2D] tracking-[1px] md:tracking-[1.5px] leading-[27px] md:leading-[28.5px]" href="https://wshl.st/katherineMarcelo">Ver lista de deseo</Link>
             </div>
         </section>

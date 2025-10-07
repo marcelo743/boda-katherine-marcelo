@@ -85,6 +85,8 @@ export default function InvitationsTable({
         },
       ];
     },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [onCopy, onViewGuests, onEditInvitation, onEditGuest, disableActions, disabledReason, push]
   );
 

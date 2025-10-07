@@ -1,6 +1,6 @@
 "use client"
 
-import { getInvitation, getInvitationGuest } from "@/services/invitation.services";
+import { getInvitationGuest } from "@/services/invitation.services";
 import { GetAllInvitations } from "@/services/invitations.services";
 import { GuestDTO } from "@/types/guest.dto";
 import { InvitationRow } from "@/types/invitationTable";

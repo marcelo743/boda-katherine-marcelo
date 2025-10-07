@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { Bell, Menu, Settings, LogOut } from "lucide-react";
+import { Bell, Menu, Settings } from "lucide-react";
 import LogoutButton from "./LogOut";
 import { createClientComponentClient, User } from "@supabase/auth-helpers-nextjs";
 
@@ -35,7 +35,12 @@ export default function Topbar({ onToggleSidebar }: { onToggleSidebar: () => voi
   }, [supabase]);
   
 
-  const notifications = [] as any[];
+  const notifications = [
+    {
+      id: 1,
+      title: "Nueva invitación",
+      body: "Has recibido una nueva invitación de usuario."
+  }];
 
   return (
     <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">

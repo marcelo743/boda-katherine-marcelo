@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Home, BarChart2, Package, Tag, ChevronRight } from "lucide-react";
+import { Home, BarChart2, Package, ChevronRight } from "lucide-react";
 
 export default function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const nav = [

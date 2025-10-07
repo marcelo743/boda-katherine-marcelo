@@ -39,7 +39,7 @@ export async function middleware(req: NextRequest) {
   }
 
   if ((isAdminPage || isAdminApi) && session) {
-    const role = session.user.user_metadata?.role;
+    // const role = session.user.user_metadata?.role;
     // if (role !== 'admin') {
     //   if (isAdminApi) {
     //     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
