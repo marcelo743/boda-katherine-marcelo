@@ -9,6 +9,7 @@ export function useAppNavigation() {
   const replace = useCallback((to: string) => {
     const base = to.startsWith('/') ? to : `/${to}`;
     router.replace(base);
+    router.refresh();
   }, [router]);
 
   const openNewTab = (url: string) => window.open(url, '_blank');
