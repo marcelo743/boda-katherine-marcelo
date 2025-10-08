@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { LogOut } from "lucide-react";
+import { useAppNavigation } from "@/hooks/useNavigation";
 
 export default function LogoutButton() {
-  const router = useRouter();
+  const { replace } = useAppNavigation();
   const supabase = createClientComponentClient();
   const [loading, setLoading] = useState(false);
 
@@ -16,8 +16,7 @@ export default function LogoutButton() {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
 
-      router.replace("/login");
-      router.refresh();
+      replace("/login");
     } catch (e) {
       console.error(e);
       alert("No se pudo cerrar sesión.");

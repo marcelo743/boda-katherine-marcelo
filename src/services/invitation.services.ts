@@ -25,3 +25,14 @@ export async function sendConfirmedGuests(guestIds: string[], invitationId: stri
 
   return data;
 }
+
+export async function setInvitationSeen(invitationId: string) {
+  if(invitationId == "") return;
+
+  const { data } = await api.post<Response<{ error: string; status: string }>>(
+    `/invitation/seen`,
+    { invitationId }
+  );
+
+  return data;
+}

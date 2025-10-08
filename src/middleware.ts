@@ -34,7 +34,7 @@ export async function middleware(req: NextRequest) {
   }
 
   if (isAuthOnlyPage && session) {
-    const dashUrl = new URL('/dashboard', req.url)
+    const dashUrl = new URL('/admin', req.url)
     return NextResponse.redirect(dashUrl)
   }
 
@@ -62,6 +62,7 @@ export const config = {
     '/admin/:path*',
 
     // Páginas públicas con reglas de auth
+    "/",
     '/login',
     '/signup',
 

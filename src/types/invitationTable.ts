@@ -7,7 +7,7 @@ export interface InvitationRow {
   invitationUrl: string;
 }
 
-export type ActionKey = "editInvitation" | "editGuest" | "viewGuests" | "copyLink";
+export type ActionKey = "editInvitation" | "editGuest" | "viewGuests" | "copyLink" | "viewInvitation";
 
 export interface InvitationsTableProps {
   rows: InvitationRow[];
@@ -15,6 +15,7 @@ export interface InvitationsTableProps {
   onViewGuests?: (row: InvitationRow) => void;
   onEditInvitation?: (row: InvitationRow) => void;
   onEditGuest?: (row: InvitationRow) => void;
+  onViewInvitation?: (row: InvitationRow) => void;
   className?: string;
   disableActions?:
     | Partial<Record<ActionKey, boolean>>

@@ -11,3 +11,5 @@ export type FocusState = {
   isVisible: boolean;
   isActive: boolean;
 };
+
+export const AUTHENTICATED = "authenticated";

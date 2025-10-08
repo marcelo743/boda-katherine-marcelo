@@ -1,7 +1,7 @@
 "use client";
 
 import React, { MouseEvent as ReactMouseEvent, useMemo, useRef, useState } from "react";
-import { MoreHorizontal, Users, Edit3, Copy } from "lucide-react";
+import { MoreHorizontal, Users, Edit3, Copy, View } from "lucide-react";
 import { Pill } from "./Pill";
 import { KebabPortal } from "./KebabPortal";
 import { useToast } from "@/hooks/useToast";
@@ -14,6 +14,7 @@ export default function InvitationsTable({
   onViewGuests,
   onEditInvitation,
   onEditGuest,
+  onViewInvitation,
   className,
   disableActions,
   disabledReason,
@@ -83,6 +84,14 @@ export default function InvitationsTable({
           disabled: !!dis.copyLink,
           reason: why.copyLink,
         },
+        {
+          key: "viewInvitation",
+          label: "Ver invitación",
+          icon: <View className="h-4 w-4" />,
+          onClick: () => onViewInvitation?.(row),
+          disabled: !!dis.viewInvitation,
+          reason: why.viewInvitation,
+        }
       ];
     },
 

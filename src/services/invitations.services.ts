@@ -10,7 +10,7 @@ export async function GetAllInvitations() {
     { 
         id: i.id,
         title: i.title,
-        seen: true,
+        seen: i.seen,
         invitationUrl: `${process.env.NEXT_PUBLIC_HOST}?invitationId=${i.id}` }
     )) as InvitationRow[] ?? [];
 }

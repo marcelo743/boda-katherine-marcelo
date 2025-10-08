@@ -1,12 +1,15 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { getInvitation, sendConfirmedGuests } from "../services/invitation.services";
+import { getInvitation, sendConfirmedGuests, setInvitationSeen } from "../services/invitation.services";
 import { HttpStatusCode } from "axios";
 import { InvitationDTO } from "@/types/invitation.dto";
+import { useAppNavigation } from "./useNavigation";
+import { useUserSupabase } from "./useUserSupabase";
 
 export function useGuest(invitationId?: string) {
-
+    const { user, userLoading} = useUserSupabase();
+    const { replace } = useAppNavigation();
     const [confirmedIds, setConfirmedIds] = useState<string[]>([]);
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -24,7 +27,15 @@ export function useGuest(invitationId?: string) {
     };
 
     useEffect(() => {
-        if(!invitationId) return;
+        // update invitation seen
+        updateInvitationSeen();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [invitationId, user, userLoading]);
+
+    useEffect(() => {
+        if(!invitationId) {
+            return replace('/admin');
+        };
         
         getInvitation(invitationId)
         .then((response) => {
@@ -35,7 +46,9 @@ export function useGuest(invitationId?: string) {
            setConfirmedIds(confirmGuestIds);
            setAlreadyConfirmedGuestIds(confirmGuestIds);
         });
-    }, [invitationId])
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [invitationId]);
 
     const handleSubmit = async () => {
         setLoading(true);
@@ -49,6 +62,16 @@ export function useGuest(invitationId?: string) {
             console.error("Error al enviar datos:", error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const updateInvitationSeen = async () => {
+        if(user !== null || userLoading) return;
+
+        try {
+            await setInvitationSeen(invitationId ?? "");
+        } catch (error) {
+            console.error("Error al enviar datos:", error);
         }
     };
 

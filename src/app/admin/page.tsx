@@ -2,8 +2,10 @@
 import React from "react";
 import InvitationTable from "@/app/components/Admin/IntitationTable";
 import { useUseInvitations } from "@/hooks/useInvitations";
+import { useAppNavigation } from "@/hooks/useNavigation";
 
 export default function AdminHome() {
+  const { openNewTab } = useAppNavigation();
   const { invitations: rows, invitationLength, drawerOpen, setDrawerOpen, setInvitationSelected, invitationSelected, guests} = useUseInvitations();
 
   return (
@@ -24,6 +26,9 @@ export default function AdminHome() {
           }}
           onCopy={(row) => navigator.clipboard.writeText(row.invitationUrl)}
           disableActions={{editGuest: true, editInvitation: true }}
+          onViewInvitation={(row) => {
+            openNewTab(row.invitationUrl);
+          }}
         />
       </div>
 

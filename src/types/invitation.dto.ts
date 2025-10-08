@@ -4,5 +4,6 @@ import { GuestDTO } from "./guest.dto";
 export interface InvitationDTO extends ControlField {
   id: UUID;
   title: string;
+  seen: boolean;
   guest: GuestDTO[];
 };

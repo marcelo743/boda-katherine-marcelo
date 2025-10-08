@@ -2,11 +2,11 @@
 
 
 import { useState } from 'react'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useRouter } from "next/navigation";
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useAppNavigation } from '@/hooks/useNavigation';
 
 export default function Login() {
-  const router = useRouter();
+  const { replace } = useAppNavigation();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -32,8 +32,7 @@ export default function Login() {
       return
     }
 
-    router.replace("/admin");
-    router.refresh();
+    replace('/admin');
   }
 
   return (
