@@ -65,8 +65,8 @@ export default function Home({ searchParams }: Props) {
             <GuestList guests={invitation?.guest ?? []} familyName={invitation?.title ?? ""} alreadyConfirmedGuestIds={alreadyConfirmedGuestIds} {...guestProps}/>
             <WeddingDetails />
             <Inspiration
-              text="Etiqueta las fotos de nuestra boda con este hashtag"
-              fallbackText="#katherineyjuan"
+              text="Grábame como un sello sobre tu corazón; llévame como una marca sobre tu brazo. Fuerte es el amor, como la muerte, y tenaz la pasión, como el sepulcro. Como llama divina es el fuego ardiente del amor."
+              fallbackText="Cantares 8, 6-7"
             />
             <Acknowledgments />
             <Gallery />

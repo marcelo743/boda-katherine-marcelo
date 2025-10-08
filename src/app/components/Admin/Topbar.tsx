@@ -2,15 +2,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Bell, Menu, Settings } from "lucide-react";
 import LogoutButton from "./LogOut";
-import { createClientComponentClient, User } from "@supabase/auth-helpers-nextjs";
+import { useUserSupabase } from "@/hooks/useUserSupabase";
 
 export default function Topbar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
+  const { user } = useUserSupabase();
   const [openNotif, setOpenNotif] = useState(false);
   const [openUser, setOpenUser] = useState(false);
   const notifRef = useRef<HTMLDivElement | null>(null);
   const userRef = useRef<HTMLDivElement | null>(null);
-  const supabase = createClientComponentClient();
-  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const close = (e: MouseEvent) => {
@@ -26,14 +25,6 @@ export default function Topbar({ onToggleSidebar }: { onToggleSidebar: () => voi
     document.addEventListener("click", close);
     return () => document.removeEventListener("click", close);
   }, []);
-
-    useEffect(() => {
-    (async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-    })();
-  }, [supabase]);
-  
 
   const notifications = [
     {

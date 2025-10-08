@@ -61,6 +61,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ error: null, status: HttpStatusCode.Ok });
   } catch (err) {
-    return NextResponse.json({ error: 'Internal server error', status: HttpStatusCode.InternalServerError });
+    return NextResponse.json({ error: err , status: HttpStatusCode.InternalServerError });
   }
 }
