@@ -11,14 +11,15 @@ export async function GET(
   const { id: invitationId } = await context.params;
 
   const { data, error } = await supabase
-    .from("invitation")
-    .select(`
-      *,
-      guest (*)
-    `)
-    .eq("id", invitationId)
-    .order("first_name", { referencedTable: "guest", ascending: true })
-    .single();
+  .from("invitation")
+  .select(`
+    *,
+    guest!inner(*)
+  `)
+  .eq("id", invitationId)
+  .is("guest.deleted_at", null)
+  .order("created_at", { referencedTable: "guest", ascending: true })
+  .single();
 
   if (error) {
     return NextResponse.json({error: error.message, status: HttpStatusCode.InternalServerError, data: null })
