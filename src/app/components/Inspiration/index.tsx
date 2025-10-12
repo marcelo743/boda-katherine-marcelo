@@ -8,7 +8,7 @@ export default function Inspiration({ text, fallbackText = "" }: InspirationProp
     return text && fallbackText ?  (
         <section className="pt-[50px] md:pt-[120px] pr-[30px] md:pr-[70px] pb-[50px] md:pb-[88px] pl-[30px] md:pl-[70px] bg-[#BBD3B1] text-center">
             <div data-aos="zoom-in-up" data-aos-duration="1000">
-                <p className="text-white text-[17px] md:text-[21px] tracking-[1px] leading-[25.5px] md:leading-[38px] mb-[20px] mx-[15px] md:mx-0">{text}</p>
+                <q className="text-white text-[17px] md:text-[21px] tracking-[1px] leading-[25.5px] md:leading-[38px] mb-[20px] mx-[15px] md:mx-0">{text}</q>
                 <p className="text-white text-[19px] md:text-[21px]">{fallbackText}</p>
             </div>
         </section>

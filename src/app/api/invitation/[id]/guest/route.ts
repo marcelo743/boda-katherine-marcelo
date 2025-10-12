@@ -15,6 +15,7 @@ export async function GET(
     .select(`
       *
     `)
+    .is("deleted_at", null)
     .eq("invitation_id", invitationId);
 
   if (error) {
